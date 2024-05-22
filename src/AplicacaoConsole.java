@@ -2,7 +2,7 @@
 /*
  * IFPB - TSI - POO - PROJETO1
  *  
- * Aplicação console para testar a classe JogoDaForca
+ * Aplicaï¿½ï¿½o console para testar a classe JogoDaForca
  * 
  */
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class AplicacaoConsole {
 	private JogoDaForca jogo;
 	private Scanner teclado;
-	private String letraDigitada;		//letra lida do teclado
-	private ArrayList<Integer> ocorrencias; // posicoes adivinhadas
+	private String letraDigitada;		///letra lida do teclado
+	private ArrayList<Integer> ocorrencias; /// posicoes adivinhadas
 
 	public AplicacaoConsole() {
 		try {

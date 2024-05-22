@@ -1,4 +1,16 @@
-OBJETO;� uma inst�ncia da classe
+OBJETO;é uma instancia da classe
 BOLSA;guarda objetos pessoais
 COLA;gruda as coisas
 SALA;local para ver TV
+SOFA;onde sentamos
+TELEVISAO;usado para entretenimento
+LIVRO;cheio de historias e conhecimentos
+CADEIRA;onde sentamos para trabalhar
+LÁPIS;usamos para escrever
+MESA;onde comemos ou trabalhamos
+COPO;usado para beber liquidos
+CELULAR;para se comunicar e acessar a internet
+JANELA;deixa a luz do sol entrar
+PORTA;entrada e saida de ambientes
+VENTILADOR;refresca o ambiente
+LÂMPADA;ilumina o espaço
