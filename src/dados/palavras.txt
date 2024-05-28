@@ -6,7 +6,7 @@ SOFA;onde sentamos
 TELEVISAO;usado para entretenimento
 LIVRO;cheio de historias e conhecimentos
 CADEIRA;onde sentamos para trabalhar
-LÁPIS;usamos para escrever
+LAPIS;usamos para escrever
 MESA;onde comemos ou trabalhamos
 COPO;usado para beber liquidos
 CELULAR;para se comunicar e acessar a internet
