@@ -36,7 +36,7 @@ public class AplicacaoConsole {
 
 					System.out.println("------------RESUMO-------------------");
 					System.out.println("total de acertos = " + jogo.getAcertos());
-					System.out.println("penalidade = " + jogo.getNumeroPenalidade() + "-" + jogo.getNomePenalidade());
+					System.out.println("penalidade = " + jogo.getNumeroPenalidade() + " - " + jogo.getNomePenalidade());
 					System.out.println("letras adivinhadas = " + jogo.getPalavraAdivinhada());
 					System.out.println("-------------------------------------");
 				} 
