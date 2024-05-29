@@ -1,23 +1,32 @@
-
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Font;
 
-public class TelaJogo {
+public class TelaJogo extends JFrame {
 
-	private JFrame frame;
-	private JTextField textField;
-	private JButton button;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JTextField txtDigiteUmaLetra;
+	private JButton btnNewButton_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	
+	private JogoDaForca jogo;
 	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JButton button_1;
-	private JLabel label_3;
 
 	/**
 	 * Launch the application.
@@ -26,8 +35,8 @@ public class TelaJogo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaJogo window = new TelaJogo();
-					window.frame.setVisible(true);
+					TelaJogo frame = new TelaJogo();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,53 +45,105 @@ public class TelaJogo {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public TelaJogo() {
-		initialize();
-	}
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 600, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Jogo da Forca");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(78, 145, 53, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		btnNewButton = new JButton("Iniciar");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					jogo = new JogoDaForca();
+					jogo.iniciar();		
+					btnNewButton_1.setEnabled(true);
+					lblNewLabel.setText("tamanho: " + jogo.getTamanho());
+					lblNewLabel_1.setText("dica: " + jogo.getDica());
+					lblNewLabel_2.setText("jogo iniciado! digite uma letra");
+					lblNewLabel_4.setText("acertos: 0" );
+					lblNewLabel_5.setText(""+ jogo.getNumeroPenalidade() + " - " + jogo.getNomePenalidade());
+					lblNewLabel_3.setText("palavra: "+jogo.getPalavraAdivinhada());
+					label.setText("" + jogo.getHistoricoDeVencedores());
+				}
+				catch (Exception erro) {
+					lblNewLabel_2.setText(erro.getMessage());
+				}
+			}
+		});
+		btnNewButton.setBounds(31, 30, 85, 21);
+		contentPane.add(btnNewButton);
 		
-		button = new JButton("Iniciar");
-		button.setBounds(10, 34, 89, 23);
-		frame.getContentPane().add(button);
+		lblNewLabel = new JLabel("Tamanho:");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel.setBounds(144, 32, 118, 17);
+		contentPane.add(lblNewLabel);
 		
-		label = new JLabel("Letra:");
-		label.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		label.setBounds(10, 148, 46, 14);
-		frame.getContentPane().add(label);
+		lblNewLabel_1 = new JLabel("Dica:");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(298, 30, 262, 21);
+		contentPane.add(lblNewLabel_1);
 		
-		label_1 = new JLabel("Dica:");
-		label_1.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		label_1.setBounds(10, 112, 46, 14);
-		frame.getContentPane().add(label_1);
+		txtDigiteUmaLetra = new JTextField();
+		txtDigiteUmaLetra.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtDigiteUmaLetra.setBounds(31, 117, 67, 19);
+		contentPane.add(txtDigiteUmaLetra);
+		txtDigiteUmaLetra.setColumns(10);
 		
-		label_2 = new JLabel("Palavra =");
-		label_2.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		label_2.setBounds(10, 197, 61, 14);
-		frame.getContentPane().add(label_2);
+		btnNewButton_1 = new JButton("Adivinhar");
+		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String letra = txtDigiteUmaLetra.getText();
+					jogo.getOcorrencias(letra);
+					lblNewLabel_2.setText(""+ jogo.getResultado());
+					lblNewLabel_3.setText("palavra: "+jogo.getPalavraAdivinhada());
+					lblNewLabel_4.setText("acertos: " + jogo.getAcertos());
+					lblNewLabel_5.setText(""+ jogo.getNumeroPenalidade() + " - " + jogo.getNomePenalidade());
+					txtDigiteUmaLetra.setText("");
+					if (jogo.terminou()){
+						btnNewButton_1.setEnabled(false);
+					}
+				} catch (Exception erro) {
+					lblNewLabel_2.setText(erro.getMessage());
+				}
+			}
+		});
+		btnNewButton_1.setBounds(132, 116, 105, 21);
+		contentPane.add(btnNewButton_1);
 		
-		button_1 = new JButton("Adivinhar");
-		button_1.setBounds(156, 144, 89, 23);
-		frame.getContentPane().add(button_1);
+		lblNewLabel_2 = new JLabel("Resultado:");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(278, 93, 282, 66);
+		contentPane.add(lblNewLabel_2);
 		
-		label_3 = new JLabel("Imagem:");
-		label_3.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		label_3.setBounds(266, 148, 53, 14);
-		frame.getContentPane().add(label_3);
+		lblNewLabel_3 = new JLabel("Palavra: ");
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(31, 81, 262, 13);
+		contentPane.add(lblNewLabel_3);
+		
+		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_4.setForeground(new Color(0, 128, 64));
+		lblNewLabel_4.setBounds(31, 160, 85, 21);
+		contentPane.add(lblNewLabel_4);
+		
+		lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_5.setForeground(new Color(255, 0, 0));
+		lblNewLabel_5.setBounds(144, 159, 288, 22);
+		contentPane.add(lblNewLabel_5);
+		
+		label = new JLabel("");
+		label.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		label.setBounds(31, 192, 503, 60);
+		contentPane.add(label);
 	}
 }

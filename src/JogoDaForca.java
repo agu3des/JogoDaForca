@@ -2,8 +2,13 @@ import java.io.InputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.*;
 
 public class JogoDaForca {
+	private ArrayList<String> listaDeVencedores = new ArrayList<>();
 	private ArrayList<String> listaDePalavras = new ArrayList<>();
 	private ArrayList<String> listaDasDicas = new ArrayList<>();
 	private ArrayList<String> letrasAdivinhadas = new ArrayList<>();
@@ -14,7 +19,7 @@ public class JogoDaForca {
 	private int tentativas;
 	private String [] palavraSorteada;
 	private String dicaDaPalavraSorteada;
-	//private String letraDaVez;
+	private String palavra;
 
 	public JogoDaForca() throws Exception {
 		InputStream stream = this.getClass().getResourceAsStream("/dados/palavras.txt");
@@ -29,13 +34,33 @@ public class JogoDaForca {
 			this.listaDasDicas.add(linha.split(";")[1]);
 		}
 		arquivo.close();
+		
+		InputStream streamVencedores = this.getClass().getResourceAsStream("/dados/vencedores.txt");
+		if(streamVencedores == null) 
+			throw new Exception("Arquivo com dados dos vencedores inexistente");
+		Scanner arquivoDosVencedores = new Scanner(streamVencedores);
+		String linhaVencedores;
+		while (arquivoDosVencedores.hasNext()) {
+			linhaVencedores = arquivoDosVencedores.nextLine();
+			this.listaDeVencedores.add(linhaVencedores.split(";")[0]);
+		}
+		arquivoDosVencedores.close();
+		
+	}
+	
+	public void escritorDosVencedores() throws Exception {
+		OutputStream os = new FileOutputStream("C:\\Users\\Angelica\\Documents\\POO\\testeProjeto\\src\\dados\\vencedores.txt", true); 
+        Writer wr = new OutputStreamWriter(os); 
+        BufferedWriter br = new BufferedWriter(wr); 
+        br.write("palavra: " + palavra + " acerotos: " + getAcertos() + " erros: " + erros+ ";" + "\n" + "|");
+        br.newLine();
+        br.close();
 	}
 
 	public void iniciar() {
 		tentativas = 0;
 		acertos = 0;
 		erros = 0;
-		String palavra;
 		Random random = new Random();
 		int indiceSorteado = random.nextInt(listaDePalavras.size());
 		palavra = listaDePalavras.get(indiceSorteado);
@@ -96,8 +121,12 @@ public class JogoDaForca {
 	}
 
 	public String getPalavraAdivinhada() {
-				return letrasAdivinhadas.toString();
+			return letrasAdivinhadas.toString();
 	}
+	
+	public String getHistoricoDeVencedores() {
+			return listaDeVencedores.toString();
+}
 
 	public int getAcertos() {
 		return acertos;
@@ -127,12 +156,15 @@ public class JogoDaForca {
 	}
 
 
-	public String getResultado() {
+	public String getResultado() throws Exception {
 		if (!terminou())
 			return "jogo em andamento";
-		else if (acertos == getTamanho()) 
+		else if (acertos == getTamanho()) {
+			escritorDosVencedores();
 			return "voce venceu";
+		}
 		else
+			escritorDosVencedores();
 			return "voce foi enforcado";
 	}
 
