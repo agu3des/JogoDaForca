@@ -54,7 +54,7 @@ public class JogoDaForca {
 		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
         Writer wr = new OutputStreamWriter(os); 
         BufferedWriter br = new BufferedWriter(wr); 
-        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "|");
+        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "/n" + "|");
         br.close();
 	}
 
