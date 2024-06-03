@@ -1,4 +1,5 @@
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,11 +50,11 @@ public class JogoDaForca {
 	}
 	
 	public void escritorDosVencedores() throws Exception {
-		OutputStream os = new FileOutputStream("C:\\Users\\Angelica\\Documents\\POO\\testeProjeto\\src\\dados\\vencedores.txt", true); 
+		URL filePath = this.getClass().getResource("dados/vencedores.txt");
+		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
         Writer wr = new OutputStreamWriter(os); 
         BufferedWriter br = new BufferedWriter(wr); 
-        br.write("palavra: " + palavra + " acerotos: " + getAcertos() + " erros: " + erros+ ";" + "\n" + "|");
-        br.newLine();
+        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "|");
         br.close();
 	}
 
