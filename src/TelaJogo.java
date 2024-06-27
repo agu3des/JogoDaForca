@@ -143,7 +143,7 @@ public class TelaJogo extends JFrame {
 		
 		label = new JLabel("");
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		label.setBounds(31, 192, 503, 60);
+		label.setBounds(31, 192, 529, 60);
 		contentPane.add(label);
 	}
 }

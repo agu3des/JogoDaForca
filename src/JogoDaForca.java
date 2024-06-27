@@ -1,15 +1,14 @@
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.*;
 
 public class JogoDaForca {
-	private ArrayList<String> listaDeVencedores = new ArrayList<>();
+	private ArrayDeque<String> listaDeVencedores = new ArrayDeque<>();
 	private ArrayList<String> listaDePalavras = new ArrayList<>();
 	private ArrayList<String> listaDasDicas = new ArrayList<>();
 	private ArrayList<String> letrasAdivinhadas = new ArrayList<>();
@@ -43,21 +42,12 @@ public class JogoDaForca {
 		String linhaVencedores;
 		while (arquivoDosVencedores.hasNext()) {
 			linhaVencedores = arquivoDosVencedores.nextLine();
-			this.listaDeVencedores.add(linhaVencedores.split(";")[0]);
+			this.listaDeVencedores.push(linhaVencedores.split(";")[0]);
 		}
 		arquivoDosVencedores.close();
 		
 	}
 	
-	public void escritorDosVencedores() throws Exception {
-		URL filePath = this.getClass().getResource("dados/vencedores.txt");
-		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
-        Writer wr = new OutputStreamWriter(os); 
-        BufferedWriter br = new BufferedWriter(wr); 
-        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "/n" + "|");
-        br.close();
-	}
-
 	public void iniciar() {
 		tentativas = 0;
 		acertos = 0;
@@ -108,21 +98,29 @@ public class JogoDaForca {
 	    return ocorrencias;
 	}
 
-
 	public boolean terminou() {
-		if (acertos == getTamanho())
+		if (acertos == getTamanho()) {
 			return true;
-		else if(erros == 6) {
+		} else if (erros == 6) {
 			return true;
 		}
 		else {
 			return false;
 		}
-			
 	}
 
 	public String getPalavraAdivinhada() {
 			return letrasAdivinhadas.toString();
+	}
+	
+	public void escritorDosVencedores() throws Exception {
+		URL filePath = this.getClass().getResource("dados/vencedores.txt");
+		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
+        Writer wr = new OutputStreamWriter(os); 
+        BufferedWriter br = new BufferedWriter(wr); 
+        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "/n" + "|");
+        br.newLine();
+        br.close();
 	}
 	
 	public String getHistoricoDeVencedores() {
@@ -156,17 +154,16 @@ public class JogoDaForca {
 	    }
 	}
 
-
 	public String getResultado() throws Exception {
 		if (!terminou())
-			return "jogo em andamento";
+			return "jogo em andamento...";
 		else if (acertos == getTamanho()) {
 			escritorDosVencedores();
-			return "voce venceu";
+			return "voce venceu!";
 		}
 		else
 			escritorDosVencedores();
-			return "voce foi enforcado";
+			return "voce foi enforcado!";
 	}
 
 }
