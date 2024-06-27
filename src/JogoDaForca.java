@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.*;
 
 public class JogoDaForca {
-	private ArrayDeque<String> listaDeVencedores = new ArrayDeque<>();
+	private ArrayDeque<String> pilhaDeVencedores = new ArrayDeque<>();
 	private ArrayList<String> listaDePalavras = new ArrayList<>();
 	private ArrayList<String> listaDasDicas = new ArrayList<>();
 	private ArrayList<String> letrasAdivinhadas = new ArrayList<>();
@@ -42,7 +42,7 @@ public class JogoDaForca {
 		String linhaVencedores;
 		while (arquivoDosVencedores.hasNext()) {
 			linhaVencedores = arquivoDosVencedores.nextLine();
-			this.listaDeVencedores.push(linhaVencedores.split(";")[0]);
+			this.pilhaDeVencedores.push(linhaVencedores.split(";")[0]);
 		}
 		arquivoDosVencedores.close();
 		
@@ -124,7 +124,7 @@ public class JogoDaForca {
 	}
 	
 	public String getHistoricoDeVencedores() {
-			return listaDeVencedores.toString();
+		return pilhaDeVencedores.toString();
 }
 
 	public int getAcertos() {
