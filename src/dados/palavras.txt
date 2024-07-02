@@ -13,4 +13,4 @@ CELULAR;para se comunicar e acessar a internet
 JANELA;deixa a luz do sol entrar
 PORTA;entrada e saida de ambientes
 VENTILADOR;refresca o ambiente
-LÂMPADA;ilumina o espaço
+LAMPADA;ilumina o espaço
