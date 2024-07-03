@@ -35,10 +35,13 @@ public class JogoDaForca {
 		}
 		arquivo.close();
 		
-		InputStream streamVencedores = this.getClass().getResourceAsStream("/dados/vencedores.txt");
-		if(streamVencedores == null) 
-			throw new Exception("Arquivo com dados dos vencedores inexistente");
-		Scanner arquivoDosVencedores = new Scanner(streamVencedores);
+//		InputStream streamVencedores = this.getClass().getResourceAsStream("C:/vencedores.txt");
+//		if(streamVencedores == null) 
+//			throw new Exception("Arquivo com dados dos vencedores inexistente");
+		
+		String nome = new File(".").getAbsolutePath();
+		System.out.println(nome);
+		Scanner arquivoDosVencedores = new Scanner(nome);
 		String linhaVencedores;
 		while (arquivoDosVencedores.hasNext()) {
 			linhaVencedores = arquivoDosVencedores.nextLine();
@@ -114,12 +117,12 @@ public class JogoDaForca {
 	}
 	
 	public void escritorDosVencedores() throws Exception {
-		URL filePath = this.getClass().getResource("dados/vencedores.txt");
-		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
-        Writer wr = new OutputStreamWriter(os); 
-        BufferedWriter br = new BufferedWriter(wr); 
-        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "/n" + "|");
-        br.newLine();
+//		URL filePath = this.getClass().getResource("C:/vencedores.txt");
+//		OutputStream os = new FileOutputStream(filePath.getPath(), true); 
+//        Writer wr = new OutputStreamWriter(os); 
+//        BufferedWriter br = new BufferedWriter(wr); 
+        FileWriter br = new FileWriter(new File(".").getAbsolutePath(), true);
+        br.write("palavra: " + palavra + " acertos: " + getAcertos() + " erros: " + erros+ ";" + "\n" + "|");
         br.close();
 	}
 	
