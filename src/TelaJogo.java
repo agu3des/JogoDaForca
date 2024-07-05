@@ -82,7 +82,7 @@ public class TelaJogo extends JFrame {
 					lblNewLabel_4.setText("Acertos: 0" );
 					lblNewLabel_5.setText("Penalidade("+ jogo.getNumeroPenalidade() + ") - " + jogo.getNomePenalidade());
 					lblNewLabel_3.setText("Palavra: "+jogo.getPalavraAdivinhada());
-					textArea.setText("" + jogo.getHistoricoDeVencedores());
+					textArea.setText("" + jogo.getHistoricoDeVencedores() + "\n");
 					
 					atualizarImagem();
 				}
@@ -165,11 +165,11 @@ public class TelaJogo extends JFrame {
 		
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(238, 185, 134, 162);
+		scrollPane.setBounds(238, 185, 230, 162);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextArea();
-		textArea.setBounds(240, 184, 132, 160);
+		textArea.setBounds(240, 184, 228, 160);
 		contentPane.add(textArea);
 		textArea.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		
