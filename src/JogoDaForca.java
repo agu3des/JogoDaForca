@@ -108,7 +108,7 @@ public class JogoDaForca {
 
     public void escritorDosVencedores() throws Exception {
         BufferedWriter writer = new BufferedWriter(new FileWriter("vencedores.txt", true));
-        String entry = "Palavra: " + palavra + "| Acertos: " + getAcertos() + "| Erros: " + erros + "\n";
+        String entry = "Palavra: " + palavra + " | Acertos: " + getAcertos() + " | Erros: " + erros + "\n";
         writer.write(entry);
         writer.close();
     }
