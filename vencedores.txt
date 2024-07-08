@@ -1,5 +1,0 @@
-palavra: OBJETO acertos: 6 erros: 1;
-palavra: CADEIRA acertos: 7 erros: 0;
-palavra: LAMPADA acertos: 7 erros: 1;
-palavra: TELEVISAO acertos: 9 erros: 0;
-palavra: JANELA acertos: 6 erros: 0;
