@@ -19,6 +19,7 @@ import java.awt.Font;
 import java.awt.Image;
 
 
+
 public class TelaJogo extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -37,6 +38,7 @@ public class TelaJogo extends JFrame {
 	private JScrollPane scrollPane;
 	
 	private JogoDaForca jogo;
+
 
 	
 	/**
@@ -91,6 +93,7 @@ public class TelaJogo extends JFrame {
 				}
 			}
 		});
+
 		contentPane.setLayout(null);
 		contentPane.add(btnNewButton);
 		
@@ -107,6 +110,7 @@ public class TelaJogo extends JFrame {
 		txtDigiteUmaLetra = new JTextField();
 		txtDigiteUmaLetra.setBounds(31, 115, 67, 19);
 		txtDigiteUmaLetra.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+    
 		contentPane.add(txtDigiteUmaLetra);
 		txtDigiteUmaLetra.setColumns(10);
 		
@@ -114,6 +118,7 @@ public class TelaJogo extends JFrame {
 		btnNewButton_1.setBounds(118, 114, 105, 21);
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton_1.setEnabled(false);
+
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -127,6 +132,7 @@ public class TelaJogo extends JFrame {
 					
 					atualizarImagem();
 					
+
 					if (jogo.terminou()){
 						btnNewButton_1.setEnabled(false);
 					}
@@ -135,6 +141,7 @@ public class TelaJogo extends JFrame {
 				}
 			}
 		});
+
 		contentPane.add(btnNewButton_1);
 		
 		lblNewLabel_2 = new JLabel("Resultado:");
